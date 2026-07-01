@@ -89,6 +89,13 @@
             gap: 1.8rem;
         }
 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-left: auto;
+        }
+
         .nav-link {
             color: var(--text-muted);
             text-decoration: none;
@@ -101,6 +108,99 @@
 
         .nav-link:hover, .nav-link:active {
             color: #ffffff;
+        }
+
+        .theme-toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(0, 0, 0, 0.22);
+            color: #ffffff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform var(--transition-speed), background var(--transition-speed), border-color var(--transition-speed);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: translateY(-1px);
+            border-color: var(--accent-emerald);
+            background: rgba(0, 245, 160, 0.12);
+        }
+
+        body.light-theme {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        body.light-theme header {
+            background: rgba(255, 255, 255, 0.92);
+            border-color: rgba(148, 163, 184, 0.14);
+        }
+
+        body.light-theme .nav-link {
+            color: #475569;
+        }
+
+        body.light-theme .nav-link:hover,
+        body.light-theme .nav-link:active {
+            color: #0f172a;
+        }
+
+        body.light-theme .theme-toggle-btn {
+            background: rgba(255, 255, 255, 0.92);
+            color: #0f172a;
+            border-color: rgba(148, 163, 184, 0.6);
+        }
+
+        body.light-theme .hero-content p {
+            color: #475569;
+        }
+
+        body.light-theme .terminal-box {
+            background: #ffffff;
+            border-color: rgba(148, 163, 184, 0.18);
+            box-shadow: inset 0 2px 10px rgba(148, 163, 184, 0.08), 0 10px 30px rgba(148, 163, 184, 0.12);
+        }
+
+        body.light-theme .terminal-body {
+            color: var(--accent-blue);
+        }
+
+        body.light-theme .hero-photo-card {
+            background: radial-gradient(circle at 30% 30%, rgba(0, 121, 255, 0.18), transparent 33%), linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(226, 232, 240, 0.92));
+            border-color: rgba(0, 121, 255, 0.16);
+            box-shadow: 0 30px 90px rgba(0, 121, 255, 0.08), inset 0 0 1px rgba(15, 23, 42, 0.08);
+        }
+
+        body.light-theme .hero-photo-ring {
+            border-color: rgba(0, 121, 255, 0.25);
+            box-shadow: 0 0 60px rgba(0, 121, 255, 0.18);
+        }
+
+        body.light-theme .scroll-indicator {
+            color: #0f172a;
+            background: rgba(255, 255, 255, 0.92);
+            border-color: rgba(0, 121, 255, 0.22);
+            box-shadow: 0 0 24px rgba(0, 121, 255, 0.16);
+        }
+
+        body.light-theme .hero-content h1 {
+            color: #0f172a;
+        }
+
+        body.light-theme .section-title,
+        body.light-theme .subsection-title,
+        body.light-theme .about-details h3,
+        body.light-theme .testimonial-item,
+        body.light-theme .info-node-content p,
+        body.light-theme .card-3d-info p,
+        body.light-theme .card-3d-info a {
+            color: #0f172a;
         }
 
         /* Sections Structural Adaptive Proportions */
@@ -138,6 +238,7 @@
 
         /* Hero / Home Section */
         .hero-section {
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -295,13 +396,12 @@
             transform: scale(1.1);
         }
 
-        /* ANTI-FLICKER INTERIOR HARDWARE ROTATING HOME PHOTO FRAME RINGS */
+        /* HERO PHOTO CARD */
         .hero-image-container {
             position: relative;
             flex: 0.8;
             width: 100%;
-            max-width: 350px;
-            aspect-ratio: 1 / 1;
+            max-width: 420px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -309,59 +409,136 @@
             will-change: transform;
         }
 
-        .theme-ring-outer {
-            position: absolute;
-            width: 106%;
-            height: 106%;
-            border-radius: 50%;
-            border: 2px dashed var(--accent-emerald);
-            opacity: 0.3;
-            animation: spinClockwise 25s linear infinite;
-            transform: translateZ(0);
-            will-change: transform;
-        }
-
-        .theme-ring-inner {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            border-top-color: var(--accent-blue);
-            border-bottom-color: var(--accent-emerald);
-            animation: spinCounterClockwise 15s linear infinite;
-            transform: translateZ(0);
-            will-change: transform;
-        }
-
-        .premium-cutout-box {
+        .hero-photo-card {
             position: relative;
-            width: 90%;
-            height: 90%;
-            z-index: 5;
-            border-radius: 50%;
+            width: 100%;
+            max-width: 360px;
+            aspect-ratio: 1 / 1;
+            border-radius: 46% 54% 52% 48% / 45% 48% 52% 55%;
+            background: radial-gradient(circle at 30% 30%, rgba(0, 245, 160, 0.18), transparent 33%), linear-gradient(180deg, rgba(10, 13, 20, 0.96), rgba(10, 13, 20, 0.92));
             overflow: hidden;
-            border: 2px solid var(--border-line);
-            background: var(--bg-card);
-            transform: translateZ(0);
+            box-shadow: 0 30px 90px rgba(0, 245, 160, 0.12), inset 0 0 1px rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(0, 245, 160, 0.16);
         }
 
-        .premium-cutout-box img {
+        .hero-photo-card::before {
+            content: '';
+            position: absolute;
+            inset: -12%;
+            background: radial-gradient(circle at 55% 50%, rgba(0, 245, 160, 0.3), transparent 23%);
+            filter: blur(36px);
+            opacity: 0.85;
+            pointer-events: none;
+        }
+
+        .hero-photo-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 1.4rem auto 0;
+            pointer-events: none;
+        }
+
+        .hero-photo-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            box-shadow: inset 0 0 120px rgba(0, 245, 160, 0.12);
+            pointer-events: none;
+        }
+
+        .hero-photo-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
         }
 
-        @keyframes spinClockwise {
-            0% { transform: rotate(0deg) translateZ(0); }
-            100% { transform: rotate(360deg) translateZ(0); }
+        .hero-photo-card:hover img {
+            transform: scale(1.03);
         }
 
-        @keyframes spinCounterClockwise {
-            0% { transform: rotate(360deg) translateZ(0); }
-            100% { transform: rotate(0deg) translateZ(0); }
+        .hero-photo-ring {
+            position: absolute;
+            inset: -6%;
+            border-radius: 50%;
+            border: 2px solid rgba(0, 245, 160, 0.25);
+            box-shadow: 0 0 60px rgba(0, 245, 160, 0.25);
+            pointer-events: none;
         }
 
+        .scroll-indicator {
+            position: absolute;
+            left: 50%;
+            bottom: 2rem;
+            transform: translateX(-50%);
+            width: 58px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 245, 160, 0.35);
+            background: rgba(0, 0, 0, 0.28);
+            box-shadow: 0 0 30px rgba(0, 245, 160, 0.24);
+            cursor: pointer;
+            pointer-events: auto;
+            transition: transform var(--transition-speed), background var(--transition-speed), box-shadow var(--transition-speed);
+            z-index: 5;
+        }
+
+        .scroll-indicator:hover {
+            transform: translateX(-50%) scale(1.08);
+            background: rgba(0, 245, 160, 0.14);
+            box-shadow: 0 0 38px rgba(0, 245, 160, 0.32);
+        }
+
+        .scroll-indicator i {
+            color: var(--accent-emerald);
+            font-size: 1.15rem;
+            animation: floatArrow 1.8s ease-in-out infinite;
+        }
+
+        .mobile-contact-button {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 1.25rem;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 245, 160, 0.96), rgba(0, 121, 255, 0.96));
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 45px rgba(0, 245, 160, 0.25);
+            z-index: 1000;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .mobile-contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 24px 55px rgba(0, 245, 160, 0.3);
+        }
+
+        .mobile-contact-button i {
+            font-size: 1.2rem;
+        }
+
+        @media (min-width: 769px) {
+            .mobile-contact-button {
+                display: none;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(12px); }
+        }
+        
         /* ==========================================================================
            TUNED SKILLS COMPONENT
            ========================================================================== */
@@ -498,6 +675,18 @@
         /* ==========================================================================
            PREMIUM PROJECTS GRID SYSTEM & FILTERING ARCHITECTURE
            ========================================================================== */
+        .projects-placeholder {
+            background: var(--bg-card);
+            border: 1px solid var(--border-line);
+            padding: 2.5rem;
+            border-radius: 20px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            transition: opacity 0.25s ease-out;
+        }
+
         .portfolio-filter-bar {
             display: flex;
             gap: 0.8rem;
@@ -590,18 +779,18 @@
         }
 
         /* ==========================================================================
-           PREMIUM ABOUT FRAME DESIGN WITH BATCH IDENTIFIER
+           NEON CIRCULAR ABOUT PHOTO FRAME
            ========================================================================== */
         .about-grid-container {
             display: flex;
             align-items: center;
-            gap: 5rem;
+            gap: 4rem;
         }
 
         .about-premium-frame-wrapper {
             position: relative;
-            width: 280px;
-            height: 280px;
+            width: 320px;
+            height: 320px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -612,35 +801,57 @@
             position: relative;
             width: 100%;
             height: 100%;
-            background: var(--bg-card);
-            border-radius: 24px;
-            padding: 4px;
-            border: 2px solid transparent;
-            background-image: linear-gradient(var(--bg-card), var(--bg-card)), linear-gradient(135deg, var(--accent-blue), var(--accent-emerald));
-            background-origin: border-box;
-            background-clip: content-box, border-box;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            animation: premiumFadeGlow 4s ease-in-out infinite alternate;
-            transform: translateZ(0);
+            border-radius: 50%;
+            padding: 14px;
+            background: radial-gradient(circle at 30% 25%, rgba(0, 245, 160, 0.12), transparent 28%), radial-gradient(circle at 75% 75%, rgba(0, 121, 255, 0.12), transparent 30%);
+            box-shadow: 0 0 45px rgba(0, 245, 160, 0.18), inset 0 0 24px rgba(0, 121, 255, 0.12);
+            overflow: hidden;
+        }
+
+        .about-premium-glow-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            padding: 2px;
+            background: linear-gradient(135deg, rgba(0, 245, 160, 0.6), rgba(0, 121, 255, 0.6));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            pointer-events: none;
         }
 
         .about-premium-inner-frame {
+            position: relative;
             width: 100%;
             height: 100%;
-            border-radius: 20px;
+            border-radius: 50%;
             overflow: hidden;
-            background: var(--bg-dark);
+            background: radial-gradient(circle at center, rgba(10, 13, 20, 0.95), rgba(10, 13, 20, 0.88));
+            box-shadow: inset 0 0 45px rgba(0, 0, 0, 0.4);
         }
 
         .about-premium-inner-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+            filter: saturate(1.05) contrast(1.05);
+            transition: transform 0.35s ease;
         }
 
-        @keyframes premiumFadeGlow {
-            0% { box-shadow: 0 15px 30px rgba(0, 121, 255, 0.15); opacity: 0.85; }
-            100% { box-shadow: 0 20px 40px rgba(0, 245, 160, 0.25); opacity: 1; }
+        .about-premium-inner-frame:hover img {
+            transform: scale(1.04);
+        }
+
+        .about-premium-glow-card::after {
+            content: '';
+            position: absolute;
+            inset: 20%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.02);
+            box-shadow: 0 0 40px rgba(0, 245, 160, 0.12);
+            pointer-events: none;
         }
 
         .about-details {
@@ -1004,13 +1215,16 @@
 
     <!-- Header Block -->
     <header>
-        <div class="logo">Manish<span>Here</span></div>
-        <nav class="nav-menu" id="navMenu">
-            <a href="#about" class="nav-link">About</a>
-            <a href="#skills" class="nav-link">Skills</a>
-            <a href="#portfolio" class="nav-link">Projects</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </nav>
+        <div class="logo">Port<span>folio</span></div>
+        <div class="header-actions">
+            <nav class="nav-menu" id="navMenu">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#portfolio" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle dark and light mode">🌙</button>
+        </div>
     </header>
 
     <!-- Home Section -->
@@ -1047,14 +1261,14 @@
             </div>
         </div>
         
-        <!-- Rotating Photo Ring Container -->
+        <!-- HERO PHOTO SECTION -->
         <div class="hero-image-container">
-            <div class="theme-ring-outer"></div>
-            <div class="theme-ring-inner"></div>
-            <div class="premium-cutout-box">
+            <div class="hero-photo-card">
+                <div class="hero-photo-ring"></div>
                 <img src="assets/home-profile.jpg" alt="Manish Kashyap Profile Photo" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop'">
             </div>
         </div>
+        <button id="scrollIndicator" class="scroll-indicator" aria-label="Scroll to About"><i class="fa-solid fa-chevron-down"></i></button>
     </section>
 
     <!-- Best Skills Section Ports -->
@@ -1332,6 +1546,8 @@
         <p>&copy; 2026 Manish Kashyap. All Rights Reserved.</p>
     </footer>
 
+    <a href="#contact" class="mobile-contact-button" aria-label="Contact Me"><i class="fa-solid fa-message"></i></a>
+
     <!-- Stable Slider, Bi-directional Typewriter & 0.5s Technical Skill Tracker Engine -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -1458,6 +1674,38 @@
                     const body = terminalBox.querySelector('.terminal-body');
                     body.style.opacity = '0.3';
                     setTimeout(() => { body.style.opacity = '1'; }, 200);
+                });
+            }
+
+            // --- Theme Toggle Button ---
+            const themeToggle = document.getElementById('themeToggle');
+            const scrollIndicator = document.getElementById('scrollIndicator');
+
+            function updateThemeIcon() {
+                if (!themeToggle) return;
+                themeToggle.textContent = document.body.classList.contains('light-theme') ? '☀️' : '🌙';
+            }
+
+            if (themeToggle) {
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme === 'light') {
+                    document.body.classList.add('light-theme');
+                }
+                updateThemeIcon();
+
+                themeToggle.addEventListener('click', () => {
+                    document.body.classList.toggle('light-theme');
+                    localStorage.setItem('theme', document.body.classList.contains('light-theme') ? 'light' : 'dark');
+                    updateThemeIcon();
+                });
+            }
+
+            if (scrollIndicator) {
+                scrollIndicator.addEventListener('click', () => {
+                    const nextSection = document.getElementById('about');
+                    if (nextSection) {
+                        nextSection.scrollIntoView({ behavior: 'smooth' });
+                    }
                 });
             }
 
